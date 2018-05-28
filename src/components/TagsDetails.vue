@@ -1,6 +1,6 @@
 <template>
   <div class="post-details">
-   <swiper :options="swiperOption" class="swiper-box" ref="mySwiper2" @slideChange="onSwipe">
+   <swiper :options="swiperOption" class="swiper-box" ref="mySwiper3" @slideChange="onSwipe">
       <swiper-slide v-for="(slide, index) in posts" :key="index" class="swiper-item">
         <post :post="slide"></post>
       </swiper-slide>
@@ -49,12 +49,12 @@ export default {
   },
   computed: {
       swiper() {
-        return this.$refs.mySwiper2.swiper
+        return this.$refs.mySwiper3.swiper
       }
     },
   mounted () { 
     var currentIndex;
-    this.$http.get('http://my-website.next/api/posts/search/'+ this.$route.params.word).
+    this.$http.get('http://my-website.next/api/posts/search/tag/'+ this.$route.params.word).
       then(response => {(this.posts = response.data), 
             (currentIndex = response.data.map(function(x) {return x.ID }).indexOf(Number(this.$route.params.id))),
             (this.swiper.slideTo(currentIndex, 1000, false))});

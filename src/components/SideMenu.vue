@@ -10,7 +10,7 @@
     <div class="tags" style="margin-top: 50px">
     </div>
     <div class="tags">
-        <a v-for="tag of menu.hashtags" @click="searchTags">
+        <a v-for="tag of menu.hashtags" @click="searchTags(tag.name)">
             {{tag.name}}
         </a>
     </div>
@@ -61,6 +61,11 @@ export default {
             this.$router.push('/posts/search/' + this.search);
             this.$parent.closeNav();
           }
+      }
+      ,
+      searchTags(tag){
+          this.$router.push('/posts/search/tag/' + tag);
+          this.$parent.closeNav();
       }
   },
   mounted () {

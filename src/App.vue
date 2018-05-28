@@ -8,8 +8,8 @@
     </div>
 
     <div id="mySidenav" class="sidenav">
-      <div class="close-div">
-        <a href="javascript:void(0)" class="closebtn" @click="closeNav">
+      <div id="close-div">
+        <a href="javascript:void(0)" class="closebtn" @click="closeNav" id="close-butt">
           <i class="fa fa-remove"></i> 
         </a>
       </div>
@@ -22,6 +22,9 @@
     <div>
       <router-view/>
     </div>
+     <div @click="goToTop" class="up-chevron" v-bind:class="{'show-up': (scrollY > 350), 'hide-up': (scrollY < 350)}">
+        <i class="fa fa-chevron-circle-up" style="font-size:48px;color:red"></i>
+     </div>
   </div>
 </template>
 
@@ -33,16 +36,37 @@ export default {
     SideMenu,
     'side-menu': SideMenu
   },
+  data (){
+    return {
+      scrollY: 0
+    }
+  },
   methods: {
     openNav(){
       document.getElementById("mySidenav").style.width = "100%";
+      document.getElementById("close-div").style.display = "block";
+
     },
     closeNav(){
       document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("close-div").style.display = "none";
+    },
+    goToTop(){
+      window.scrollTo(0, 0); 
+    },
+    handleScroll(){
+       this.scrollY = window.scrollY;
+       console.log(window.scrollY)
     }
   },
   mounted () {
     
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>
@@ -76,6 +100,7 @@ export default {
     font-size: 36px;
     margin-left: 50px;
     color: white;
+    z-index: 3;
 }
 
 .@media screen and (max-height: 450px) {
@@ -99,10 +124,11 @@ h2{
   color: red;
 }
 
-.close-div{
+#close-div{
   width: 100%;
   height: 40px;
   background-color: rgba(0,0,0,0.8);
+  display: none;
 }
 
 .logo{
@@ -113,4 +139,10 @@ h2{
   padding-left: 10px;
   z-index: 2;
 }
+.show-up{
+    display: block;
+  }
+  .hide-up{
+    display: none;
+  }
 </style>

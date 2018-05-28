@@ -4,6 +4,8 @@ import Home from '@/components/Home'
 import PostDetails from '@/components/PostDetails'
 import Search from '@/components/Search'
 import SearchDetails from '@/components/SearchDetails'
+import Tags from '@/components/Tags'
+import TagsDetails from '@/components/TagsDetails'
 
 Vue.use(Router)
 
@@ -33,6 +35,16 @@ export default new Router({
       path: '/posts/search/:word/:id/:slug',
       name: 'SearchDetails',
       component: SearchDetails
+    },
+    {
+      path: '/posts/search/tag/:word',
+      name: 'Search',
+      component: Tags
+    },
+    {
+      path: '/posts/search/tag/:word/:id/:slug',
+      name: 'SearchDetails',
+      component: TagsDetails
     }
   ]
 })

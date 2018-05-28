@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="Home">
     <div>
       <ul>
           <li><a @click = "goTo(0)" v-bind:class="{'active': (itemId === 0)}">Sport</a></li>
@@ -25,7 +25,9 @@
           <div class="swiper-pagination" slot="pagination"></div>
        
       </swiper>
-      <div @click="goToTop" class="up-chevron"><i class="fa fa-chevron-circle-up" style="font-size:48px;color:red"></i></div>
+      <div @click="goToTop" class="up-chevron" v-bind:class="{'show-up': (scrollY > 350), 'hide-up': (scrollY < 350)}">
+        <i class="fa fa-chevron-circle-up" style="font-size:48px;color:red"></i>
+      </div>
 
     </div>
   </div>
@@ -36,6 +38,8 @@ import 'swiper/dist/css/swiper.css'
 
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import Category from './Category'
+
+
 
 export default {
   name: 'Home',
@@ -48,6 +52,7 @@ export default {
     return {
       posts: {},
       itemId: 0,
+      scrollY: 0,
       swiperOption: {
           direction: 'horizontal',
           slidesPerView: 1,
@@ -73,6 +78,10 @@ export default {
     },
     goToTop(){
       window.scrollTo(0, 0); 
+    },
+    handleScroll(){
+       this.scrollY = window.scrollY;
+       console.log(window.scrollY)
     }
   },
   computed: {
@@ -80,12 +89,16 @@ export default {
         return this.$refs.mySwiper.swiper
       }
     },
-
-  
   mounted () {
     var tabs = ['sport', 'politique', 'culture']
     var index = tabs.indexOf(this.$route.params.slug);
     this.swiper.slideTo(index, 1000, false)
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>
@@ -133,6 +146,12 @@ export default {
       bottom: 0;
       right: 0;
       z-index: 3;
+  }
+  .show-up{
+    display: block;
+  }
+  .hide-up{
+    display: none;
   }
 </style>
 
