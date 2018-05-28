@@ -10,7 +10,7 @@
     <div class="tags" style="margin-top: 50px">
     </div>
     <div class="tags">
-        <a v-for="tag of menu.hashtags">
+        <a v-for="tag of menu.hashtags" @click="searchTags">
             {{tag.name}}
         </a>
     </div>
@@ -23,7 +23,7 @@
 
     <div class="search tags">
         <div class="search-wrapper">
-            <input type="text" v-model="search" placeholder=" Search ..."/>
+            <input type="text" v-model="search" placeholder=" Search .."/>
             <a @click="searchWord" class="search-butt"><i class="fa fa-search" style="font-size:36px;color:red"></i></a>
         </div>
     </div>
