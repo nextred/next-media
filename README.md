@@ -1,6 +1,20 @@
-# next-media
+# Onsen UI + Vue + Axios + WP REST API Project
 
-> A Vue.js project
+
+## List of features implemented in this project
+1. Browse horizontal categories menu using swipe feature.
+2. Browse horizontal posts using swipe feature
+3. component creation 
+4. Developpement a custom API(s) using Themosis
+
+-------------------------------
+
+## Dependencies 
+- [vue](https://github.com/vuejs/vue)
+- [vue-awesome-swiper](https://github.com/surmon-china/vue-awesome-swiper).
+- [axios](https://github.com/mzabriskie/axios).
+- [vue-axios](https://github.com/imcvampire/vue-axios).
+
 
 ## Build Setup
 
@@ -16,12 +30,3 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
