@@ -24,6 +24,7 @@
     <div class="search tags">
         <div class="search-wrapper">
             <input type="text" v-model="search" placeholder=" Search ..."/>
+            <a @click="searchWord" class="search-butt"><i class="fa fa-search" style="font-size:36px;color:red"></i></a>
         </div>
     </div>
 
@@ -48,12 +49,18 @@ export default {
       goTo(slug){
         //window.history.replaceState(null, null, slug);
         this.$parent.closeNav();
-        this.$router.push('/category/' + slug)
+        this.$router.push('/category/' + slug);
       },
       displayPost(){
           window.scrollTo(0, 0); 
           this.$router.push('/category/sport/' + this.menu.featured_post.ID + '/' + this.menu.featured_post.post_name)
           this.$parent.closeNav();
+      },
+      searchWord(){
+          if(this.search !== ''){
+            this.$router.push('/posts/search/' + this.search);
+            this.$parent.closeNav();
+          }
       }
   },
   mounted () {
@@ -126,5 +133,8 @@ export default {
         padding: 10px;
         font-size: 24px;
         font-weight: bold;
+    }
+    .search-butt{
+       
     }
 </style>
