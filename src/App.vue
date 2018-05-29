@@ -50,13 +50,13 @@ export default {
     closeNav(){
       document.getElementById("mySidenav").style.width = "0";
       document.getElementById("close-div").style.display = "none";
+      window.scrollTo(0, 0);
     },
     goToTop(){
       window.scrollTo(0, 0); 
     },
     handleScroll(){
        this.scrollY = window.scrollY;
-       console.log(window.scrollY)
     }
   },
   mounted () {
@@ -96,11 +96,15 @@ export default {
 .sidenav .closebtn {
     position: fixed;
     top: 15px;
-    right: 25px;
+    right: 5px;
     font-size: 36px;
     margin-left: 50px;
     color: white;
     z-index: 3;
+    background-color: red;
+    width: 40px;
+    text-align: center;
+    border-radius: 25px;
 }
 
 .@media screen and (max-height: 450px) {

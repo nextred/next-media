@@ -81,7 +81,6 @@ export default {
     },
     handleScroll(){
        this.scrollY = window.scrollY;
-       console.log(window.scrollY)
     }
   },
   computed: {

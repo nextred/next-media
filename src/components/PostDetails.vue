@@ -3,9 +3,14 @@
    <swiper :options="swiperOption" class="swiper-box" ref="mySwiper1" @slideChange="onSwipe">
       <swiper-slide v-for="(slide, index) in posts" :key="index" class="swiper-item">
         <post :post="slide"></post>
+        <div class="related">
+          <h2>Related posts</h2>
+          <related-posts :post_id="slide.ID"></related-posts>
+        </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
    </swiper>
+   
    <div @click="goToTop" class="up-chevron"><i class="fa fa-chevron-circle-up" style="font-size:48px;color:red"></i></div>
   </div>
 </template>
@@ -14,6 +19,7 @@
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import Post from './Post'
+import RelatedPosts from './RelatedPosts'
 
 export default {
   name: 'PostDetails',
@@ -21,7 +27,8 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    'post': Post
+    'post': Post,
+    'related-posts': RelatedPosts
   },
   data () {
     return {
@@ -74,6 +81,16 @@ export default {
       bottom: 0;
       right: 0;
       z-index: 1;
+  }
+
+  .related{
+    margin-top: 20px;
+    border-top: 2px green solid;
+  }
+
+  .related h2{
+    color: red;
+    weight: bold;
   }
 </style>
 
