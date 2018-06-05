@@ -1,24 +1,24 @@
 <template>
   <div class="side-menu">
     <div class="container" @click="displayPost">
-        <img :src="menu.featured_post_image" alt="Norway" style="width:95%; height: 250px" >
+        <img :src="menu.featured_post_image" alt="Norway" style="width:100%; height: 250px" >
         <div class="centered">
-            <span style="color: rgba(1,1,1,0.5)"> A LA UNE ... </span><br/><br />
+            <span style="color: rgba(1,1,1,0.5); text-align: justify;"> A LA UNE ... </span><br/><br />
             {{menu.featured_post.post_title}}
         </div>
     </div>
-    <div class="tags" style="margin-top: 50px">
+    <div style="margin-top: 50px">
     </div>
     <div class="tags">
-        <a v-for="tag of menu.hashtags" @click="searchTags(tag.name)">
+        <span v-for="tag of menu.hashtags" @click="searchTags(tag.name)" style="margin: 10px; font-size: 18px;">
             {{tag.name}}
-        </a>
+        </span>
     </div>
 
     <div class="categories tags">
-        <a v-for="category of menu.categories" @click="goTo(category.name)">
+        <span v-for="category of menu.categories" @click="goTo(category.name)" style="margin: 10px; font-size: 18px;">
             {{category.name}}
-        </a>
+        </span>
     </div>
 
     <div class="search tags">

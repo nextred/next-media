@@ -3,37 +3,62 @@
   <div class="hello">
     <div v-for="post of posts" class="post-container" @click="displayPost(post)" v-if="isLoaded">
       <p >
-        <img :src="post.image_url" alt="Norway" >
+        <img v-lazy="post.image_url" alt="Norway" >
           {{post.post_title}} 
       </p>
       <p v-html="post.post_excerpt">
       </p>
     </div>
+    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
     <div v-if="!isLoaded" style="text-align: center; margin-top: 50px;">
-        <i class="fa fa-circle-o-notch fa-spin" style="font-size:24px"></i>
+        
     </div>
   </div>
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
+
 export default {
   name: 'Home',
   props: ['slug'],
+  components: {
+    InfiniteLoading,
+  },
   data () {
     return {
       posts: {},
-      isLoaded: false
+      isLoaded: false,
+      pageIndex: 0
     }
   },
 
   methods: {
     displayPost(post){
-        this.$router.push('/category/' + this.slug + '/' + post.ID + '/' + post.post_name);
+      this.$router.push('/category/' + this.slug + '/' + post.ID + '/' + post.post_name);
+    },
+    infiniteHandler($state){
+      if(this.pageIndex < 3){
+        setTimeout(() => {
+          this.$http.get('http://my-website.next/api/posts/' + this.slug + '/' + this.pageIndex).
+            then(response =>{(this.posts = this.posts.concat(response.data)), ($state.loaded())} )} 
+            , 1000);
+        this.pageIndex = this.pageIndex + 1;
+      }else{
+        $state.complete();
+      }    
+    },
+    isEmpty(list){
+      
+        this.posts = this.posts.concat(list);
+        $state.loaded();
+    
     }
   },
   mounted () {
-    this.$http.get('http://my-website.next/api/posts/'+ this.slug).
+    this.$http.get('http://my-website.next/api/posts/'+ this.slug + '/0').
       then(response => {(this.posts = response.data), (this.isLoaded = true)});
+    this.pageIndex += this.pageIndex;
   }
 }
 </script>

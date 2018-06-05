@@ -4,7 +4,6 @@
       <swiper-slide v-for="(slide, index) in posts" :key="index" class="swiper-item">
         <post :post="slide"></post>
       </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
    </swiper>
   </div>
 </template>

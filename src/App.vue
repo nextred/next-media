@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     openNav(){
-      document.getElementById("mySidenav").style.width = "100%";
+      document.getElementById("mySidenav").style.width = "90%";
       document.getElementById("close-div").style.display = "block";
 
     },
@@ -81,16 +81,18 @@ export default {
 }
 
 .sidenav {
-    height: 100%; /* 100% Full-height */
+    height: 90%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 3; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: rgb(0,0,0); /* Black*/
+    background-color: rgba(0,0,0, 0.8); /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
+    -webkit-transition: 0.5s;
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    transform: translate3d(0,0,0);
 }
 
 .sidenav .closebtn {
@@ -148,5 +150,11 @@ h2{
   }
   .hide-up{
     display: none;
+  }
+  .up-chevron{
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
   }
 </style>

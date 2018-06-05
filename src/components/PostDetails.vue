@@ -8,10 +8,11 @@
           <related-posts :post_id="slide.ID"></related-posts>
         </div>
       </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="share-div">
+        <social-net></social-net>
+      </div>
    </swiper>
    
-   <div @click="goToTop" class="up-chevron"><i class="fa fa-chevron-circle-up" style="font-size:48px;color:red"></i></div>
   </div>
 </template>
 
@@ -20,6 +21,8 @@ import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import Post from './Post'
 import RelatedPosts from './RelatedPosts'
+import SocialNet from './SocialNet'
+
 
 export default {
   name: 'PostDetails',
@@ -28,7 +31,8 @@ export default {
     swiper,
     swiperSlide,
     'post': Post,
-    'related-posts': RelatedPosts
+    'related-posts': RelatedPosts,
+    'social-net': SocialNet
   },
   data () {
     return {
@@ -38,6 +42,8 @@ export default {
           slidesPerView: 1,
           spaceBetween: 30,
           mousewheel: true,
+          loop: true,
+          autoHeight: true,
           pagination: {
             el: '.swiper-pagination',
             clickable: true
@@ -91,6 +97,13 @@ export default {
   .related h2{
     color: red;
     weight: bold;
+  }
+  .share-div{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 3;
   }
 </style>
 

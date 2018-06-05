@@ -1,5 +1,8 @@
 <template>
-  <div class="Home">
+  <div class="home">
+    <div>
+      <vue-dfp adunit="ch1_nextmedia_728*90_atf" dimensions="728x90"></vue-dfp>
+    </div>
     <div>
       <ul>
           <li><a @click = "goTo(0)" v-bind:class="{'active': (itemId === 0)}">Sport</a></li>
@@ -7,7 +10,7 @@
           <li><a @click = "goTo(2)" v-bind:class="{'active': (itemId === 2)}">Culture</a></li>
       </ul>
     </div>
-     
+    
     <div> 
       <swiper :options="swiperOption" class="swiper-box" ref="mySwiper" @slideChange="onSwipe">
           <swiper-slide class="swiper-item">
@@ -21,35 +24,49 @@
           <swiper-slide class="swiper-item">
             <category slug="culture"></category>
           </swiper-slide>
-
-          <div class="swiper-pagination" slot="pagination"></div>
        
       </swiper>
-      <div @click="goToTop" class="up-chevron" v-bind:class="{'show-up': (scrollY > 350), 'hide-up': (scrollY < 350)}">
-        <i class="fa fa-chevron-circle-up" style="font-size:48px;color:red"></i>
-      </div>
+
+      
 
     </div>
   </div>
 </template>
 
 <script>
+import VueDfpProvider from 'plate-vue-dfp/DfpProvider.vue';
+
 import 'swiper/dist/css/swiper.css'
 
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import Category from './Category'
 
+const adunits = {
+  'section-id': {
+    'POSITION1': {
+      'aduid': 'ADUNIT-ID-1'
+      , 'dimensions': '970x250'
+      , 'cont-class': [ 'ad-container', 'class-1', 'center' ]
+      , 'cont-style': [ '' ]
+      }
+    }
+  }
 
 
 export default {
   name: 'Home',
+  
   components: {
     swiper,
     swiperSlide,
-    'category': Category
+    'category': Category,
+    VueDfpProvider
   },
   data () {
     return {
+      dfpid: '61879624',
+      dfpUnits: adunits,
+      sectionId: 'section-id',
       posts: {},
       itemId: 0,
       scrollY: 0,
@@ -151,6 +168,10 @@ export default {
   }
   .hide-up{
     display: none;
+  }
+  .home{
+    overflow:scroll;
+    overflow-x:hidden;
   }
 </style>
 

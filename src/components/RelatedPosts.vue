@@ -6,7 +6,7 @@
         <swiper-slide v-for="(slide, index) in posts" :key="index" class="swiper-item">
             <div > 
                 <img :src="slide.image_url" />
-                <h3><b> {{slide.post_title}} </b><a @click="displayPost(slide)"> (Read more ...)</a></h3>
+                <h5><b> {{slide.post_title}} </b><a @click="displayPost(slide)"> (Read more ...)</a></h5>
             </div>
         </swiper-slide>
         <br />
