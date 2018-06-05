@@ -11,7 +11,7 @@ var SocialSharing = require('vue-social-sharing');
 import DoubleClick from 'vue-doubleclick';
 import VueDfp from './vue-dfp'
 Vue.use(VueDfp, {
-  dfpID: '2320769425'
+  dfpID: '138235320360'
 })
 
 

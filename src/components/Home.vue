@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div>
-      <vue-dfp adunit="ch1_nextmedia_728*90_atf" dimensions="728x90"></vue-dfp>
+      <vue-dfp adunit="next_ads" dimensions="320x50"></vue-dfp>
     </div>
     <div>
       <ul>

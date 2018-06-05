@@ -9,7 +9,7 @@
         </div>
       </swiper-slide>
       <div class="share-div">
-        <social-net></social-net>
+        <social-net :url="url" :title="title"></social-net>
       </div>
    </swiper>
    
@@ -64,6 +64,12 @@ export default {
   computed: {
       swiper() {
         return this.$refs.mySwiper1.swiper
+      },
+      url() {
+        return window.location.href
+      },
+      title() {
+        return "sfsdsdsdds";
       }
     },
   mounted () { 
@@ -71,8 +77,7 @@ export default {
     this.$http.get('http://my-website.next/api/posts/'+ this.$route.params.cat).
       then(response => {(this.posts = response.data), 
             (currentIndex = response.data.map(function(x) {return x.ID }).indexOf(Number(this.$route.params.id))),
-            (this.swiper.slideTo(currentIndex, 1000, false)),
-            (console.log(currentIndex + "hhhhhhhhhhhhhhhhhhhhh" + this.$route.params.id))});
+            (this.swiper.slideTo(currentIndex, 1000, false))});
   }
 }
 </script>
